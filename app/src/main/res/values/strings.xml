@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ApiApp</string>
+    <!-- TabLayoutのタイトル -->
+    <string name="tab_title_api">新着順</string>
+    <string name="tab_title_favorite">お気に入り</string>
+
+    <string name="base_url">https://webservice.recruit.co.jp/hotpepper/gourmet/v1/</string>
+    <string name="api_key">d3498402df9fa532</string>
+    <string name="api_keyword">ランチ</string>
+
+</resources>
