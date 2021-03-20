@@ -16,21 +16,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/nameTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:padding="8dp"
+        android:padding="4dp"
         android:textColor="@android:color/black"
-        android:textSize="15sp"
+        android:textSize="7sp"
+        app:layout_constraintBottom_toBottomOf="@+id/addressTextView"
+        app:layout_constraintEnd_toStartOf="@id/favoriteImageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/addressTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="4dp"
+        android:textColor="@android:color/black"
+        android:textSize="7sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/favoriteImageView"
         app:layout_constraintStart_toEndOf="@id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/nameTextView" />
 
     <ImageView
         android:id="@+id/favoriteImageView"
