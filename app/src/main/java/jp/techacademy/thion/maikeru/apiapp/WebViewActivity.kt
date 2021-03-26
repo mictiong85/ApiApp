@@ -14,52 +14,51 @@ import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.fragment_api.*
 
 
-class WebViewActivity : AppCompatActivity() {
-
+class WebViewActivity : AppCompatActivity(),View.OnClickListener {
 
     private val items= mutableListOf<Shop>()
     var url:String=""
+    var onClickAddFavorite:((Shop)->Unit)?=null
+    var onClickDeleteFavorite:((Shop)->Unit)?=null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
-        val shop1=intent.getSerializableExtra(KEY_URL) as Shop
+        val (shop1, isFavorite) = pair()
+
         url=shop1.couponUrls.toString()
 
         url = if (shop1.couponUrls.sp.isNotEmpty()) shop1.couponUrls.sp else shop1.couponUrls.pc
 
         webView.loadUrl(url)
 
-/*
-        val favoriteImageView: ImageView =view.findViewById(R.id.button1)
-        button1.apply{
-            setImageResource
+
+        if(isFavorite){
+            button1.text="削除"
+        }else{
+            button1.text="登録"
         }
-*/
+
+        button1.setOnClickListener(this)
+
     }
 
-/*    val data=items[shop.position]
-    val isFavorite=FavoriteShop.findBy(data.id)!=null
-    var onClickAddFavorite:((Shop)->Unit)?=null
-
-    var onClickDeleteFavorite:((Shop)->Unit)?=null
-
-    val favoriteImageView: ImageView =view.findViewById(R.id.button1)*/
-
-
-    //button....onclick etc, onclickaddafavorite.....
-/*    private fun getFavoriteInfo(){
-        favoriteImageView.apply{
-            setImageResource(if (isFavorite) R.drawable.ic_star else R.drawable.ic_star_border)
-            if(isFavorite){
-                onClickDeleteFavorite?.invoke(data)
-            }else{
-                onClickAddFavorite?.invoke(data)
-            }
-
+    override fun onClick(v: View?) {
+        val (data, isFavorite) = pair()
+        if(isFavorite){
+            onClickDeleteFavorite?.invoke(data)
+        }else{
+            onClickAddFavorite?.invoke(data)
         }
-    }*/
+    }
+
+    private fun pair(): Pair<Shop, Boolean> {
+        val shop1 = intent.getSerializableExtra(KEY_URL) as Shop
+        val data = shop1
+        val isFavorite = FavoriteShop.findBy(data.id) != null
+        return Pair(shop1, isFavorite)
+    }
 
 
     companion object {
@@ -68,4 +67,6 @@ class WebViewActivity : AppCompatActivity() {
             activity.startActivity(Intent(activity, WebViewActivity::class.java).putExtra(KEY_URL,shop))
         }
     }
+
+
 }
