@@ -16,22 +16,6 @@ import kotlinx.android.synthetic.main.fragment_api.*
 
 class WebViewActivity : AppCompatActivity() {
 
-/*
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_web_view)
-        webView.loadUrl(intent.getStringExtra(KEY_URL).toString())
-
-    }
-*/
-/*
-    companion object {
-        private const val KEY_URL = "key_url"
-        fun start(activity: Activity, url: String) {
-            activity.startActivity(Intent(activity, WebViewActivity::class.java).putExtra(KEY_URL, url))
-        }
-    }*/
-
 
     private val items= mutableListOf<Shop>()
     var url:String=""
@@ -39,30 +23,33 @@ class WebViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_web_view) //getIntextra  ....serializable no torigata ....?...
-        //from url , coupoun nの中のpc ,cp, get url//
+        setContentView(R.layout.activity_web_view)
+        val shop1=intent.getSerializableExtra(KEY_URL) as Shop
+        url=shop1.couponUrls.toString()
 
-        url=intent.getSerializableExtra(KEY_URL).toString()
-        val shop1=intent.getSerializableExtra(KEY_URL)
-        url=shop1.id
+        url = if (shop1.couponUrls.sp.isNotEmpty()) shop1.couponUrls.sp else shop1.couponUrls.pc
 
-        url = if (url.couponUrls.sp.isNotEmpty()) url.couponUrls.sp else url.couponUrls.pc
+        webView.loadUrl(url)
 
-
-        webView.loadUrl(intent.getSerializableExtra(KEY_URL).toString())
-
+/*
+        val favoriteImageView: ImageView =view.findViewById(R.id.button1)
+        button1.apply{
+            setImageResource
+        }
+*/
     }
 
-    val data=items[shop.position]
+/*    val data=items[shop.position]
     val isFavorite=FavoriteShop.findBy(data.id)!=null
     var onClickAddFavorite:((Shop)->Unit)?=null
 
     var onClickDeleteFavorite:((Shop)->Unit)?=null
 
-    val favoriteImageView: ImageView =view.findViewById(R.id.button1)
+    val favoriteImageView: ImageView =view.findViewById(R.id.button1)*/
+
 
     //button....onclick etc, onclickaddafavorite.....
-    private fun getFavoriteInfo(){
+/*    private fun getFavoriteInfo(){
         favoriteImageView.apply{
             setImageResource(if (isFavorite) R.drawable.ic_star else R.drawable.ic_star_border)
             if(isFavorite){
@@ -72,7 +59,7 @@ class WebViewActivity : AppCompatActivity() {
             }
 
         }
-    }
+    }*/
 
 
     companion object {

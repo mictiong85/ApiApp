@@ -55,9 +55,9 @@ class FavoriteAdapter(private  val context: Context):RecyclerView.Adapter<Recycl
         holder.apply{
             rootView.apply{
                 setBackgroundColor(ContextCompat.getColor(context,if(position%2==0) android.R.color.white else android.R.color.darker_gray))
-                setOnClickListener {
+/*                setOnClickListener {
                     onClickItem1?.invoke(data)
-                }
+                }*/
             }
             nameTextView.text=data.name
             Picasso.get().load(data.imageUrl).into(imageView)
