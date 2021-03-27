@@ -95,5 +95,4 @@ class ApiAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVie
 
     }
 
-
 }

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.fragment_api.*
@@ -15,38 +16,41 @@ class WebViewActivity : AppCompatActivity() {
     var url:String=""
     var onClickAddFavorite:((Shop)->Unit)?=null
     var onClickDeleteFavorite:((Shop)->Unit)?=null
+    var choice:Int=0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
 
-        val shop1 = intent.getSerializableExtra(KEY_URL) as Shop
-        val data = shop1
-        val isFavorite = FavoriteShop.findBy(data.id) != null
-
-        url=shop1.couponUrls.toString()
-        url = if (shop1.couponUrls.sp.isNotEmpty()) shop1.couponUrls.sp else shop1.couponUrls.pc
-        webView.loadUrl(url)
-
-        val shop2 = intent.getSerializableExtra(KEY_URL) as FavoriteShop
-        val data2 = shop2
-        //val isFavorite = FavoriteShop.findBy(data.id) != null
-
-        webView.loadUrl(shop2.url)
-
-        if(isFavorite){
-            button1.text="削除"
-        }else{
-            button1.text="登録"
-        }
-
-        button1.setOnClickListener{v->
+        if(choice==0){
+            val shop1 = intent.getSerializableExtra(KEY_URL) as Shop
+            val data = shop1
+            val isFavorite = FavoriteShop.findBy(data.id) != null
+            url = if (shop1.couponUrls.sp.isNotEmpty()) shop1.couponUrls.sp else shop1.couponUrls.pc
+            webView.loadUrl(url)
             if(isFavorite){
-                onClickDeleteFavorite?.invoke(data)
+                button1.text="削除"
             }else{
-                onClickAddFavorite?.invoke(data)
+                button1.text="登録"
             }
+
+            button1.setOnClickListener{v->
+                if(isFavorite){
+                    onClickDeleteFavorite?.invoke(data)
+                    button1.text="登録"
+                    Log.d("Test","Im here")
+                }else{
+                    onClickAddFavorite?.invoke(data)
+                    button1.text="削除"
+                    Log.d("Test","Im here2")
+                }
+
+            }
+
+        }else{
+
+            webView.loadUrl((intent.getSerializableExtra(KEY_URL) as FavoriteShop).url)
 
         }
 

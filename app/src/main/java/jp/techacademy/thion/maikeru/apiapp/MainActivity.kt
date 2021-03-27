@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(),FragmentCallback {
     }
 
     override fun onClickItem2(favoriteShop: FavoriteShop) {
-        WebViewActivity.start1(this,FavoriteShop)
+        WebViewActivity2.start(this,favoriteShop)
     }
 
     override fun onAddFavorite(shop:Shop){
