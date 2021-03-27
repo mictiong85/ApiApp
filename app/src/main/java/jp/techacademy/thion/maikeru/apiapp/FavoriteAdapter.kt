@@ -19,7 +19,7 @@ class FavoriteAdapter(private  val context: Context):RecyclerView.Adapter<Recycl
 
     var onClickDeleteFavorite:((FavoriteShop)->Unit)?=null
 
-    var onClickItem1:((Shop)->Unit)?=null
+    var onClickItem2:((FavoriteShop)->Unit)?=null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType){
@@ -52,12 +52,14 @@ class FavoriteAdapter(private  val context: Context):RecyclerView.Adapter<Recycl
 
     private fun updateFavoriteItemViewHolder(holder:FavoriteItemViewHolder,position: Int){
         val data=items[position]
+
+
         holder.apply{
             rootView.apply{
                 setBackgroundColor(ContextCompat.getColor(context,if(position%2==0) android.R.color.white else android.R.color.darker_gray))
-/*                setOnClickListener {
-                    onClickItem1?.invoke(data)
-                }*/
+                setOnClickListener {
+                    onClickItem2?.invoke(data)
+                }
             }
             nameTextView.text=data.name
             Picasso.get().load(data.imageUrl).into(imageView)

@@ -25,12 +25,14 @@ class MainActivity : AppCompatActivity(),FragmentCallback {
             tab.setText(viewPagerAdapter.titleIds[position])
         }.attach()
     }
-/*    override fun onClickItem(url: String) {
-        WebViewActivity.start(this, url)
-    }*/
+
 
     override fun onClickItem1(shop: Shop) {
         WebViewActivity.start(this, shop)
+    }
+
+    override fun onClickItem2(favoriteShop: FavoriteShop) {
+        WebViewActivity.start1(this,FavoriteShop)
     }
 
     override fun onAddFavorite(shop:Shop){
