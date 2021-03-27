@@ -59,7 +59,7 @@ class WebViewActivity : AppCompatActivity() {
             activity.startActivity(Intent(activity, WebViewActivity::class.java).putExtra(KEY_URL,shop))
         }
 
-        fun start1(activity: Activity, favoriteShop: FavoriteShop.Companion) {
+        fun start1(activity: Activity, favoriteShop: FavoriteShop) {
             activity.startActivity(Intent(activity, WebViewActivity::class.java).putExtra(KEY_URL,favoriteShop))
         }
     }
