@@ -28,7 +28,13 @@ class MainActivity : AppCompatActivity(),FragmentCallback {
 
 
     override fun onClickItem1(shop: Shop) {
-        WebViewActivity.start(this, shop)
+        onClickItem1(FavoriteShop().apply {
+            var favoriteShop.id=shop.id
+            var imageUrl=shop.couponUrls
+            var name:String=shop.name
+            var url=shop.couponUrls
+        })
+        WebViewActivity.start1(this, favoriteShop)
     }
 
     override fun onClickItem2(favoriteShop: FavoriteShop) {

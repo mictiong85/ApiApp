@@ -16,7 +16,7 @@ class WebViewActivity : AppCompatActivity() {
     var url:String=""
     var onClickAddFavorite:((Shop)->Unit)?=null
     var onClickDeleteFavorite:((Shop)->Unit)?=null
-    var choice:Int=0
+    var choice:Int=1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,8 +49,31 @@ class WebViewActivity : AppCompatActivity() {
             }
 
         }else{
+            val shop1 = intent.getSerializableExtra(KEY_URL) as FavoriteShop
+            val data = shop1
+            val isFavorite = FavoriteShop.findBy(data.id) != null
+            url = if (shop1.url.sp.isNotEmpty()) shop1.url.sp else shop1.url.pc
+            webView.loadUrl(url)
+            if(isFavorite){
+                button1.text="削除"
+            }else{
+                button1.text="登録"
+            }
 
-            webView.loadUrl((intent.getSerializableExtra(KEY_URL) as FavoriteShop).url)
+           /* button1.setOnClickListener{v->
+                if(isFavorite){
+                    onClickDeleteFavorite?.invoke(data)
+                    button1.text="登録"
+                    Log.d("Test","Im here")
+                }else{
+                    onClickAddFavorite?.invoke(data)
+                    button1.text="削除"
+                    Log.d("Test","Im here2")
+                }
+
+            }*/
+
+/*           / webView.loadUrl((intent.getSerializableExtra(KEY_URL) as FavoriteShop).url)*/
 
         }
 

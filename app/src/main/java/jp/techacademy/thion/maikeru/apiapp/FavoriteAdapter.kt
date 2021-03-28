@@ -19,7 +19,7 @@ class FavoriteAdapter(private  val context: Context):RecyclerView.Adapter<Recycl
 
     var onClickDeleteFavorite:((FavoriteShop)->Unit)?=null
 
-    var onClickItem2:((FavoriteShop)->Unit)?=null
+    var onClickItem1:((FavoriteShop)->Unit)?=null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType){
@@ -58,7 +58,7 @@ class FavoriteAdapter(private  val context: Context):RecyclerView.Adapter<Recycl
             rootView.apply{
                 setBackgroundColor(ContextCompat.getColor(context,if(position%2==0) android.R.color.white else android.R.color.darker_gray))
                 setOnClickListener {
-                    onClickItem2?.invoke(data)
+                    onClickItem1?.invoke(data)
                 }
             }
             nameTextView.text=data.name

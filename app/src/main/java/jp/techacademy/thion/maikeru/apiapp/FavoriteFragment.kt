@@ -35,8 +35,8 @@ class FavoriteFragment:Fragment() {
             onClickDeleteFavorite={
                 fragmentCallback?.onDeleteFavorite(it.id)
             }
-           onClickItem2 = {
-                fragmentCallback?.onClickItem2(it)
+           onClickItem1 = {
+                fragmentCallback?.onClickItem1(it)
             }
         }
 

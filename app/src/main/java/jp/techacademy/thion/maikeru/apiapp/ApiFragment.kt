@@ -2,7 +2,6 @@ package jp.techacademy.thion.maikeru.apiapp
 
 import android.content.Context
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
